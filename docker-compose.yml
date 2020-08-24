@@ -1,8 +1,8 @@
 version: '3'
 services:
   web:
-    build: ./backend
+    build: ./Rails
     volumes:
-      - ./backend:/backend
+      - ./Rails:/Rails
     ports:
       - "8080:8080"

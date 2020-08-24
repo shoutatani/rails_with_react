@@ -1,7 +1,7 @@
 ARG VERSION="2.7.1-buster"
 FROM ruby:${VERSION}
 
-ARG RAILS_ROOT=/backend
+ARG RAILS_ROOT=/Rails
 
 RUN set -x \
 &&  gem install bundler -N
