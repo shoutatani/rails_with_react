@@ -28,6 +28,8 @@
 !/storage/.keep
 
 /public/assets
+/public/frontend
+
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.
