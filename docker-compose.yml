@@ -1,8 +1,13 @@
 version: '3'
 services:
   web:
-    build: ./Rails
+    build:
+      context: ./Rails
+      args:
+        UID: $UID
+        GID: $GID
     volumes:
       - ./Rails:/Rails
+    # user: developer
     ports:
       - "8080:8080"
