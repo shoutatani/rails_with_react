@@ -5,17 +5,9 @@ ARG RAILS_ROOT=/Rails
 ARG UID
 ARG GID
 
-RUN set -x \
-  && apt-get update \
-  && apt-get install sudo
-
-RUN set -x \
-  && gem install bundler -N
-
 RUN addgroup --gid $GID developer
-RUN adduser --gecos '' --uid $UID --gid $UID developer
-RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-RUN usermod -aG sudo,root developer
+RUN adduser --disabled-password --gecos '' --uid $UID --gid $GID developer
+RUN echo 'developer ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 RUN set -x \
   && apt-get update \
@@ -42,6 +34,9 @@ COPY ./Gemfile ./Gemfile
 COPY ./Gemfile.lock ./Gemfile.lock
 
 USER developer
+
+RUN set -x \
+  && gem install bundler -N
 
 RUN set -x \
   && bundle install --jobs=4

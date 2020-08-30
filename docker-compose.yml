@@ -8,6 +8,5 @@ services:
         GID: $GID
     volumes:
       - ./Rails:/Rails
-    # user: developer
     ports:
       - "8080:8080"
