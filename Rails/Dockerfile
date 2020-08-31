@@ -5,9 +5,14 @@ ARG RAILS_ROOT=/Rails
 ARG UID
 ARG GID
 
+RUN set -x \
+  && apt-get update \
+  && apt-get install sudo
+
 RUN addgroup --gid $GID developer
 RUN adduser --disabled-password --gecos '' --uid $UID --gid $GID developer
 RUN echo 'developer ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+RUN usermod -aG sudo,root developer
 
 RUN set -x \
   && apt-get update \
