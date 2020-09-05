@@ -9,12 +9,20 @@
     "watch": "webpack --config webpack.development.js --watch"
   },
   "dependencies": {
+    "axios": "^0.20.0",
+    "bloomer": "^0.6.5",
+    "bulma": "^0.9.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "redux-devtools-extension": "^2.13.8"
   },
   "devDependencies": {
     "@types/react": "^16.9.47",
     "@types/react-dom": "^16.9.8",
+    "@types/react-redux": "^7.1.9",
+    "@types/react-router-dom": "^5.1.5",
+    "@types/redux": "^3.6.0",
     "autoprefixer": "^9.8.6",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^6.0.3",
@@ -23,6 +31,8 @@
     "mini-css-extract-plugin": "^0.10.0",
     "node-sass": "^4.14.1",
     "postcss-loader": "^3.0.0",
+    "react-redux": "^7.2.1",
+    "redux": "^4.0.5",
     "sass-loader": "^10.0.1",
     "source-map-loader": "^1.0.2",
     "style-loader": "^1.2.1",
