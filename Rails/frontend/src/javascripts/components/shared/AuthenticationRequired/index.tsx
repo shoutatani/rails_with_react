@@ -6,7 +6,6 @@ import { RootState } from "../../../reducers/RootReducer";
 export const AuthenticationRequired = (Component: React.ComponentType) => {
   return () => {
     const isLoggedIn = useSelector<RootState>((store) => store.isLoggedIn);
-    console.log("isLoggedIn", isLoggedIn);
     if (isLoggedIn) {
       return <Component />;
     } else {

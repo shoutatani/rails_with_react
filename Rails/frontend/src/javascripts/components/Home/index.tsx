@@ -17,13 +17,55 @@ export const Home: React.FC = () => (
             justifyContent: "center",
           }}
         >
-          住所一覧
+          住所検索
         </Link>
       </Column>
       <Column isSize={2}>
-        <div
-          style={{ width: "200px", height: "200px", border: "1px solid black" }}
-        ></div>
+        <Link
+          to="/users"
+          style={{
+            width: "200px",
+            height: "200px",
+            border: "1px solid black",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          ユーザー検索
+        </Link>
+      </Column>
+    </Columns>
+    <Columns isCentered>
+      <Column isSize={2}>
+        <Link
+          to="/addresses/new"
+          style={{
+            width: "200px",
+            height: "200px",
+            border: "1px solid black",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          住所新規登録
+        </Link>
+      </Column>
+      <Column isSize={2}>
+        <Link
+          to="/users/new"
+          style={{
+            width: "200px",
+            height: "200px",
+            border: "1px solid black",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          ユーザー新規登録
+        </Link>
       </Column>
     </Columns>
   </div>

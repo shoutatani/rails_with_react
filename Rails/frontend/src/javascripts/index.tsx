@@ -7,9 +7,10 @@ import { applyMiddleware, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import "../../node_modules/bulma/bulma.sass";
 import axios from "./api/common/axios";
-import List from "./components/Addresses/List";
+import { Addresses } from "./components/Addresses";
 import { Home } from "./components/Home";
 import { Login } from "./components/Login";
+import { Header } from "./components/shared/layouts/Header";
 import { rootReducer } from "./reducers/RootReducer";
 
 async function LoggedIn() {
@@ -44,12 +45,11 @@ async function LoggedIn() {
             <Login />
           </Route>
           <Route path="/addresses">
-            <Route path="/">
-              <List />
-            </Route>
+            <Addresses />
           </Route>
-          <Route path="/">
-            <Home></Home>
+          <Route exact path="/">
+            <Header />
+            <Home />
           </Route>
         </Switch>
       </Router>
