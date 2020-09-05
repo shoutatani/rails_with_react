@@ -15,7 +15,7 @@ import { rootReducer } from "./reducers/RootReducer";
 
 async function LoggedIn() {
   try {
-    const response = await axios.get("/user_login/authenticated");
+    const response = await axios.get("/admin_user_login/authenticated");
     if (response.status == 200) {
       return true;
     }
