@@ -1,10 +1,10 @@
-class AdminUserLoginController < ApplicationController
+class UserLoginController < ApplicationController
   def login
     return unless request.xhr?
 
-    admin_user = AdminUser.find_by(email: params[:email])
-    if admin_user&.authenticate(params[:password])
-      session[:user_id] = admin_user.id
+    user = User.find_by(email: params[:email])
+    if user&.authenticate(params[:password])
+      session[:user_id] = user.id
       head :ok
     else
       head :unauthorized
@@ -12,14 +12,16 @@ class AdminUserLoginController < ApplicationController
   end
 
   def logout
-    session.delete(:admin_user_id)
+    return unless request.xhr?
+
+    reset_session
     head :ok
   end
 
   def authenticated
     return unless request.xhr?
 
-    status_code = if session[:admin_user_id]
+    status_code = if session[:user_id]
                     :ok
                   else
                     :unauthorized

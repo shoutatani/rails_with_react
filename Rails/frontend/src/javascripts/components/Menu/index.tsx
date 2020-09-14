@@ -1,13 +1,14 @@
 import { Column, Columns } from "bloomer";
 import * as React from "react";
 import { Link } from "react-router-dom";
+import { AuthenticationRequired } from "../shared/AuthenticationRequired";
 
-export const Home: React.FC = () => (
+const Home: React.FC = () => (
   <div style={{ margin: "20px" }}>
     <Columns isCentered>
       <Column isSize={2}>
         <Link
-          to="/addresses"
+          to="/address_books"
           style={{
             width: "200px",
             height: "200px",
@@ -17,7 +18,7 @@ export const Home: React.FC = () => (
             justifyContent: "center",
           }}
         >
-          住所検索
+          住所録検索
         </Link>
       </Column>
       <Column isSize={2}>
@@ -39,7 +40,7 @@ export const Home: React.FC = () => (
     <Columns isCentered>
       <Column isSize={2}>
         <Link
-          to="/addresses/new"
+          to="/address_books/new"
           style={{
             width: "200px",
             height: "200px",
@@ -49,7 +50,7 @@ export const Home: React.FC = () => (
             justifyContent: "center",
           }}
         >
-          住所新規登録
+          住所録新規登録
         </Link>
       </Column>
       <Column isSize={2}>
@@ -70,3 +71,5 @@ export const Home: React.FC = () => (
     </Columns>
   </div>
 );
+
+export default AuthenticationRequired(Home);

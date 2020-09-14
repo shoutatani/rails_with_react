@@ -7,15 +7,17 @@ import { applyMiddleware, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import "../../node_modules/bulma/bulma.sass";
 import axios from "./api/common/axios";
-import { Addresses } from "./components/Addresses";
-import { Home } from "./components/Home";
+import { AddressBooks } from "./components/AddressBooks";
 import { Login } from "./components/Login";
-import { Header } from "./components/shared/layouts/Header";
+import Menu from "./components/Menu";
+import { Layout } from "./components/shared/layouts";
+import { Users } from "./components/Users";
 import { rootReducer } from "./reducers/RootReducer";
 
 async function LoggedIn() {
   try {
-    const response = await axios.get("/admin_user_login/authenticated");
+    const response = await axios.get("/user_login/authenticated");
+    console.log("response=", response);
     if (response.status == 200) {
       return true;
     }
@@ -40,18 +42,22 @@ async function LoggedIn() {
   ReactDOM.render(
     <Provider store={store}>
       <Router>
-        <Switch>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/addresses">
-            <Addresses />
-          </Route>
-          <Route exact path="/">
-            <Header />
-            <Home />
-          </Route>
-        </Switch>
+        <Layout>
+          <Switch>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/address_books">
+              <AddressBooks />
+            </Route>
+            <Route path="/users">
+              <Users />
+            </Route>
+            <Route exact path="/">
+              <Menu />
+            </Route>
+          </Switch>
+        </Layout>
       </Router>
     </Provider>,
     document.querySelector('div[data-react-entry="index"]')

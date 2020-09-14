@@ -7,5 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 ActiveRecord::Base.transaction do
-  AdminUser.create(first_name: 'admin', last_name: 'admin', email: 'admin@tan-shio.com', password: 'admin')
+  user = User.create(first_name: 'admin', last_name: 'admin', email: 'admin@tan-shio.com', password: 'admin')
+  user.create_admin_user
 end

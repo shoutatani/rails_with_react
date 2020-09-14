@@ -13,7 +13,8 @@ export const Header: React.FC = () => {
   ) => {
     e.preventDefault();
     try {
-      const response = await axios.get("/admin_user_login/logout");
+      const response = await axios.post("/user_login/logout");
+      console.log("response=", response);
       if (response.status == 200) {
         dispatch({ type: "LOGOUT" });
       }

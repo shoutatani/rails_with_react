@@ -37,6 +37,7 @@ ENV LC_ALL ja_JP.UTF-8
 WORKDIR ${RAILS_ROOT}
 COPY ./Gemfile ./Gemfile
 COPY ./Gemfile.lock ./Gemfile.lock
+COPY ./entry-point.sh ./entry-point.sh
 
 USER developer
 
@@ -46,5 +47,7 @@ RUN set -x \
 RUN set -x \
   && bundle install --jobs=4
 
-CMD rm -f tmp/pids/server.pid \
-  && bundle exec rails server -b 0.0.0.0 -p 8080
+RUN set -x \
+  && sudo chmod a+x ./entry-point.sh
+
+CMD ["/bin/bash", "/Rails/entry-point.sh"]

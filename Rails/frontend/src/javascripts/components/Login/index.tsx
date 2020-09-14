@@ -15,7 +15,7 @@ export const Login = (props: LoginProps) => {
   const history = useHistory();
 
   const onLogin = async (email: string, password: string) => {
-    const response = await axios.post("/admin_user_login/login", {
+    const response = await axios.post("/user_login/login", {
       email,
       password,
     });
