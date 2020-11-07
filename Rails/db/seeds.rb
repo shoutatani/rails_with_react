@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 ActiveRecord::Base.transaction do
+  return if User.find_by(email: 'admin@tan-shio.com').present?
   user = User.create(first_name: 'admin', last_name: 'admin', email: 'admin@tan-shio.com', password: 'admin')
   user.create_admin_user
 end

@@ -1,0 +1,14 @@
+# use this file with docker-compose -f docker-compose.mac.yml up
+version: '3'
+services:
+  web:
+    build:
+      context: ./Rails
+      dockerfile: "Dockerfile.mac"
+      args:
+        UID: $UID
+        GID: $GID
+    volumes:
+      - ./Rails:/Rails
+    ports:
+      - "8080:8080"
