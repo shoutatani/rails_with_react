@@ -1,11 +1,20 @@
 class UsersController < ApplicationController
-  def preserve_create
-    session
+  def create
+    head :ok
   end
 
-  def create
-    Rails.logger.info '*******create*******'
-    Rails.logger.info "params=#{params}"
-    head :ok
+  def admin_privilege
+    return unless request.xhr?
+
+    user_id = session[:user_id]
+    return head :forbidden if user_id.blank?
+
+    status_code = if AdminUser.find(user_id).present?
+                    :ok
+                  else
+                    :not_found
+                  end
+
+    head status_code
   end
 end

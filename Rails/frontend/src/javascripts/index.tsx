@@ -6,36 +6,21 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { applyMiddleware, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import "../../node_modules/bulma/bulma.sass";
-import axios from "./api/common/axios";
+import { IsAdmin, IsLoggedIn } from "./api/user";
 import { AddressBooks } from "./components/AddressBooks";
 import { Login } from "./components/Login";
 import Menu from "./components/Menu";
 import { Layout } from "./components/shared/layouts";
 import { Users } from "./components/Users";
-import { rootReducer } from "./reducers/RootReducer";
-
-async function LoggedIn() {
-  try {
-    const response = await axios.get("/user_login/authenticated");
-    console.log("response=", response);
-    if (response.status == 200) {
-      return true;
-    }
-  } catch (error) {
-    return false;
-  }
-}
+import reducer from "./reducers";
 
 (async () => {
-  const response = await LoggedIn();
-  const isLoggedIn = response;
-
+  const [isLoggedIn, isAdmin] = await Promise.all([IsLoggedIn(), IsAdmin()]);
   const store = createStore(
-    rootReducer,
-    { isLoggedIn: isLoggedIn },
+    reducer,
+    { isLoggedIn, isAdmin },
     composeWithDevTools(
       applyMiddleware()
-      // other store enhancers if any
     )
   );
 

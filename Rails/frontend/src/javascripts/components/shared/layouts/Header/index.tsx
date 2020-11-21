@@ -2,26 +2,33 @@ import { Column, Columns } from "bloomer";
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { Logout } from "../../../../actions";
 import axios from "../../../../api/common/axios";
-import { RootState } from "../../../../reducers/RootReducer";
+import { RootState } from "../../../../reducers";
 
 export const Header: React.FC = () => {
   const isLoggedIn = useSelector<RootState>((state) => state.isLoggedIn);
   const dispatch = useDispatch();
+  const [shouldRedirectToTop, setShouldRedirectToTop] = React.useState(false);
+
   const handleLogoutClicked: React.MouseEventHandler<HTMLAnchorElement> = async (
     e
   ) => {
     e.preventDefault();
     try {
       const response = await axios.post("/user_login/logout");
-      console.log("response=", response);
       if (response.status == 200) {
-        dispatch({ type: "LOGOUT" });
+        dispatch(Logout());
       }
     } catch (error) {
-      throw new Error("Something wrong on logout");
+      console.error("Something wrong on logout");
     }
+    setShouldRedirectToTop(true);
   };
+
+  if (shouldRedirectToTop) {
+    window.location.href = "/";
+  }
 
   return (
     <Columns>

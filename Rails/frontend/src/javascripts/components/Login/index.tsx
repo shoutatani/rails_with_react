@@ -3,6 +3,7 @@ import * as React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { Login as LoginSuccess } from "../../actions";
 import axios from "../../api/common/axios";
 
 export interface LoginProps {}
@@ -20,7 +21,7 @@ export const Login = (props: LoginProps) => {
       password,
     });
     if (response.status == 200) {
-      dispatch({ type: "LOGIN" });
+      dispatch(LoginSuccess());
       history.push("/");
     }
   };

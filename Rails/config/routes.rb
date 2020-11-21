@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   post 'user_login/login'
   post 'user_login/logout'
   get 'user_login/authenticated'
+  get 'users/admin_privilege'
   resources :users, only: %i[create]
   resources :address_books, only: %i[create]
   get '*path', to: 'top#index', format: :html
